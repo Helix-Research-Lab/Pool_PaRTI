@@ -13,6 +13,7 @@ To install requirements:
 ```setup
 conda env create --file environment.yml
 ```
+The token embedding and attention map generation step requires access to a GPU with 16 GB memory due to the use of protein language models.
 
 For a list of proteins with UniProt accessions, we provide the code to create fasta files (./create_fasta_files), to create token embeddings (./token_embedding_generator), and to create sequence embedding through Pool PaRTI and the three baselines (./pooling_generator). Once the sequence embeddings are generated, to run training in any of the tasks we have benchmarked on, follow the instructions below:
 
@@ -26,7 +27,7 @@ conda activate poolparti
 
 Once the conda environment is activated, the following steps need to be taken to generate a sequence embedding vector.
 1) fasta files should be created for the sequence,
-2) token embeddings & attention map generation with the protein language model of interest (ESM-2 650M or protBERT in this repo)
+2) token embeddings & attention map generation with the protein language model of interest (ESM-2 650M or protBERT in this repo). This step requires access to a GPU with 16 GB memory due to the use of protein langauge models.
 3) applying Pool PaRTI on the token embeddings and the attention maps
 
 Below, we provide the code to run to achieve each of the steps
