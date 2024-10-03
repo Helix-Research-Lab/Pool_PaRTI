@@ -4,7 +4,7 @@
 
 This repository is the official implementation of [Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning]. 
 
->📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
+![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/de0b97e9-069c-43ea-9a0d-da8fe80fe3cc)
 
 ## Requirements and environment setup
 
