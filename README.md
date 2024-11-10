@@ -1,4 +1,4 @@
->📋  A template README.md for code accompanying a Machine Learning paper
+
 
 # Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning
 
@@ -117,12 +117,12 @@ The training script also automatically generates evaluation metrics and predicte
 
 If you find this repository or method useful in your research, please cite:
 
-@article{YourArticle,
+@article{article,
   title={Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning},
-  author={Your Name and Co-authors},
-  journal={Journal Name or arXiv preprint},
-  year={2023},
-  url={link_to_paper}
+  author={Alp Tartici, Gowri Nayar},
+  journal={bioRxiv},
+  year={2024},
+  url={doi.org/10.1101/2024.10.04.616701}
 }
 
 ## License
