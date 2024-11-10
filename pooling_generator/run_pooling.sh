@@ -6,8 +6,7 @@ start_time=$(date +%s)
 # Maximum duration the script should run (46 hours in seconds)
 max_duration=$((46 * 3600))
 
-source /home/groups/rbaltman/tartici/miniconda3/etc/profile.d/conda.sh
-conda activate substrateSpec1
+conda activate poolparti
 ml gcc/10.1.0
 ml cuda/12.1.1
 

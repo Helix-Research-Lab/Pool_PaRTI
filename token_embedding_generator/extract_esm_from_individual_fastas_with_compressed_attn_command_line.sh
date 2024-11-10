@@ -1,18 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=esm_loc_train
-#SBATCH -o ./slurmOutputs/out.%x_%a_%j.out  # STDOUT
-#SBATCH --error=./slurmOutputs/err.%x_%a_%j.err  # STDOUT
-#SBATCH --mail-user=tartici@stanford.edu
-#SBATCH --mail-type=ALL
-#SBATCH --partition=bioe,rbaltman
-#SBATCH --gres gpu:1
-#SBATCH --time=2:10:00
-##SBATCH --time=1-23:50:50
-#SBATCH -C GPU_MEM:40GB
-#SBATCH --exclusive
 
-source /home/groups/rbaltman/tartici/miniconda3/etc/profile.d/conda.sh
-conda activate substrateSpec1
+conda activate conda activate poolparti
 ml gcc/10.1.0
 ml cuda/12.1.1
 
