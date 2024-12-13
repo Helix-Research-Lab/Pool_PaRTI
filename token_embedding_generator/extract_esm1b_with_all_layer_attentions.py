@@ -23,7 +23,7 @@ def parse_fasta(fasta_file):
 
 def process_fasta_and_extract_data(fasta_file, output_dir):
     # Load the ESM-2 model
-    model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
+    model, alphabet = esm.pretrained.esm1b_t33_650M_UR50S()()
     batch_converter = alphabet.get_batch_converter()
     model.eval()  # Disables dropout for deterministic results
 
@@ -39,55 +39,47 @@ def process_fasta_and_extract_data(fasta_file, output_dir):
 
     # Extract, process, and save data for each sequence
     for i, (label, _) in enumerate(data):
-        # Process and save attention heads
-        attn_raw = results["attentions"][i, 32]  # Last layer's attention
 
-        # Compress attention data
-        attn_mean_pooled = torch.mean(attn_raw, dim=0)
-        attn_max_pooled = torch.max(attn_raw, dim=0).values
+        # Process and save attention heads across layers
+        attn_mean_pooled_layers = []
+        attn_max_pooled_layers = []
+        for layer in range(33):
+            attn_raw = results["attentions"][i, layer]  # Attention from each layer
 
-        
-        max_values = torch.max(torch.cat([attn_raw.max(dim=1, keepdim=True)[0].unsqueeze(-1),  # Add a singleton dimension
-                                       attn_raw.max(dim=2, keepdim=True)[0].unsqueeze(1)],  # Add a singleton dimension
-                                      dim=-1), dim=-1)[0]
-    
-        normalized_attn_raw = torch.div(attn_raw, max_values)
-        attn_max_pooled_norm = normalized_attn_raw.max(dim=0)[0]
+            # Compress attention data
+            attn_mean_pooled = torch.mean(attn_raw, dim=0)
+            attn_max_pooled = torch.max(attn_raw, dim=0).values
 
-        # Combine the tensors
-        combined_tensor = torch.stack([attn_mean_pooled, attn_max_pooled, attn_max_pooled_norm])
+            attn_mean_pooled_layers.append(attn_mean_pooled)
+            attn_max_pooled_layers.append(attn_max_pooled)
 
-        #attention_file_path = foutput_dir, "attention_matrices", f"{label}.pt")
-        attention_file_path = f"{output_dir}/attention_matrices/{fasta_file.split('.fa')[0].split('/')[-1]}.pt"
+        # Stack the pooled attention matrices
+        attn_mean_pooled_stacked = torch.stack(attn_mean_pooled_layers)
+        attn_max_pooled_stacked = torch.stack(attn_max_pooled_layers)
+
+        # Combine the mean and max pooled attention matrices
+        combined_attention = torch.stack([attn_mean_pooled_stacked, attn_max_pooled_stacked]).unsqueeze(1)
+
+        # Save the combined attention matrix
+        attention_file_path = f"{output_dir}/attention_matrices_mean_max_perLayer/{fasta_file.split('.fa')[0].split('/')[-1]}.pt"
         if not os.path.exists(attention_file_path):
             try:
-                torch.save(combined_tensor, attention_file_path)
+                torch.save(combined_attention, attention_file_path)
             except Exception as e:
                 print(f"output dir {output_dir}", flush=True)
                 print(f"attention_file_path {attention_file_path}", flush=True)
                 print(f"fasta_file {fasta_file}", flush=True)
                 print(f"fasta_file.split('.fa')[0].split('/')[-1] {fasta_file.split('.fa')[0].split('/')[-1]}", flush=True)
                 raise Exception(e)
-                
-                
+
             print(f"Processed and saved attention data: {attention_file_path}", flush=True)
 
         # Save representations
-        #representations_file_path = os.path.join(output_dir, "representation_matrices", f"{label}.pt")
         representations_file_path = f"{output_dir}/representation_matrices/{fasta_file.split('.fa')[0].split('/')[-1]}.pt"
         if not os.path.exists(representations_file_path):
             representations = results["representations"][33][i]  # Layer 33 representations
             torch.save(representations, representations_file_path)
             print(f"Processed and saved representations: {representations_file_path}", flush=True)
-
-        # Save contacts if available
-        if 'contacts' in results:
-            contacts_file_path = f"{output_dir}/contact_matrices/{fasta_file.split('.fa')[0].split('/')[-1]}.pt"
-            #contacts_file_path = os.path.join(output_dir, "contact_matrices", f"{label}.pt")
-            if not os.path.exists(contacts_file_path):
-                contacts = results["contacts"][i]  # Contact information
-                torch.save(contacts, contacts_file_path)
-                print(f"Processed and saved contacts: {contacts_file_path}", flush=True)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

@@ -13,7 +13,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # Path to the Python script
-PYTHON_SCRIPT="extract_esm_with_compressed_attentions.py"
+PYTHON_SCRIPT="extract_esm1b_with_all_layer_attentions.py"
 
 # Define paths for clarity and maintainability
 embeddings_output_dir="representation_matrices"
