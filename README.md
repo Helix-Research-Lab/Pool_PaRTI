@@ -6,6 +6,10 @@ This repository is the official implementation of [Pool PaRTI: A PageRank-based 
 
 ![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/de0b97e9-069c-43ea-9a0d-da8fe80fe3cc)
 
+## Accessing the human proteome reference sequence embeddings
+Please see the precomputed importance weights for all human proteome reference sequences. You can use these weights to perform a weighted average of your amino acid token embeddings to get a sequence embeddings.
+https://zenodo.org/records/14080821 
+
 ## Requirements and environment setup
 
 To install requirements:
