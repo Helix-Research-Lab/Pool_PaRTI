@@ -33,6 +33,11 @@ path_attention_matrices="./token_embedding_generator/attention_matrices"
 output_dir="./post_pooling_sequence_embeddings"
 accession_list=""
 
+# Activate the environment by uncommenting the lines below:
+# conda activate poolparti
+# ml gcc/10.1.0
+# ml cuda/12.1.1
+
 # Parse named arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -91,19 +96,25 @@ mkdir -p "$output_dir"
 processed_count=0
 skipped_count=0
 
+echo "Starting iterating over the file list"
+
 for accession in "${accessions[@]}"; do
     token_emb_file="$path_token_emb/$accession.pt"
     attention_matrix_file="$path_attention_matrices/$accession.pt"
-    output_file="$output_dir/$accession.pt"
+    output_file="$output_dir/"
 
     if [[ -f "$token_emb_file" ]] && [[ -f "$attention_matrix_file" ]]; then
         echo "Processing $accession..."
-        python -u "$PYTHON_SCRIPT" "$token_emb_file" "$attention_matrix_file" "$output_file"
+        python -u "$PYTHON_SCRIPT" --path_token_emb "$token_emb_file" --path_attention_layers "$attention_matrix_file" --output_dir  "$output_file"
         if [[ $? -eq 0 ]]; then
             ((processed_count++))
             echo "Processed $processed_count files..."
         else
             echo "Error processing $accession."
+            echo "Here are the inputs to it"
+            echo "token_emb_file $token_emb_file"
+            echo "attention_matrix_file $attention_matrix_file"
+            echo "output_file $output_file"
         fi
     else
         echo "Skipping $accession, required files not found."
