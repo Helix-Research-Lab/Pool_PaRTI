@@ -4,7 +4,9 @@
 
 This repository is the official implementation of [Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning]. 
 
-![graphical_summary_of_Pool_PaRTI]([https://github.com/Helix-Research-Lab/Pool_PaRTI/blob/main/graphical_abstract.pdf])
+![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/e237aafe-d0ed-42b5-ba40-abc04409c030)
+
+
 
 ## Shortcut to generating Pool PaRTI embeddings for the human proteome reference sequences.
 Please see the precomputed token importance weights for all human proteome reference sequences. You can use these weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to perform a weighted sum of your amino acid token embeddings to get a sequence embeddings.
