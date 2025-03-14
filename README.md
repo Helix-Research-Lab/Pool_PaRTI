@@ -5,16 +5,10 @@
 This repository is the official implementation of [Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning]. 
 
 ![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/e237aafe-d0ed-42b5-ba40-abc04409c030)
-<<<<<<< HEAD
 =======
 
-
->>>>>>> d72a14f0e0df79cfa50f1f487b3354b23ca0ae06
-
-
-
 ## Access to Pool PaRTI embeddings and token importance values for the human proteome reference sequences.
-Please see the precomputed Pool PaRTI embeddings token importance weights for all human proteome reference sequences. You can use the embeddings directly in your applications and use the residue weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to assess the hierarchical importance of residues of interest within the context of the whole protein.
+Please see the precomputed Pool PaRTI embeddings and token importance weights for all human proteome reference sequences. You can use the embeddings directly in your applications and use the residue weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to assess the hierarchical importance of residues of interest within the context of the whole protein.
 https://zenodo.org/records/14080821 
 
 All proteins are indexed by their UniProt accession codes.
@@ -32,16 +26,14 @@ For a list of proteins with UniProt accessions, we provide the code to create fa
 
 ## Embedding Generation
 
-If you're looking to create embeddings for a human protein on UniProt, you can simply extract the token weights from the Zenodo page linked above, and run a weighted average of your token embeddings to get a sequence embeddings.
+If you're looking to get embeddings for a human protein on UniProt, you can simply extract them from the Zenodo page linked above.
 
 However, if you want to generate a sequence embedding for a different protein from scratch, then you will need to run the PLM, extract token embeddings and the attention maps. Then you'll need to run Pool PaRTI on the attention maps to extract token weights to perform a weighted average on the token embeddings. 
 
 The step-by-step guidance is provided below:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ### Human Protein on UniProt
-
+Get them from the zip file in https://zenodo.org/records/14080821 indexed by the UniProt accession.
 
 
 ### Running from scratch
@@ -51,15 +43,11 @@ The step-by-step guidance is provided below:
 
 
 ### Option 2: Running from scratch
->>>>>>> d72a14f0e0df79cfa50f1f487b3354b23ca0ae06
-=======
 ### Human Protein on UniProt
 
 
 
 ### Running from scratch
->>>>>>> origin/main
-
 
 To activate the conda, run this command:
 
