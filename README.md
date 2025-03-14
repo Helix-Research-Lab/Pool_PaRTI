@@ -4,10 +4,12 @@
 
 This repository is the official implementation of [Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning]. 
 
-![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/de0b97e9-069c-43ea-9a0d-da8fe80fe3cc)
+![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/e237aafe-d0ed-42b5-ba40-abc04409c030)
 
-## Shortcut to generating Pool PaRTI embeddings for the human proteome reference sequences.
-Please see the precomputed token importance weights for all human proteome reference sequences. You can use these weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to perform a weighted sum of your amino acid token embeddings to get a sequence embeddings.
+
+
+## Access to Pool PaRTI embeddings and token importance values for the human proteome reference sequences.
+Please see the precomputed Pool PaRTI embeddings token importance weights for all human proteome reference sequences. You can use the embeddings directly in your applications and use the residue weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to assess the hierarchical importance of residues of interest within the context of the whole protein.
 https://zenodo.org/records/14080821 
 
 All proteins are indexed by their UniProt accession codes.
@@ -25,6 +27,19 @@ For a list of proteins with UniProt accessions, we provide the code to create fa
 
 ## Embedding Generation
 
+If you're looking to create embeddings for a human protein on UniProt, you can simply extract the token weights from the Zenodo page linked above, and run a weighted average of your token embeddings to get a sequence embeddings.
+
+However, if you want to generate a sequence embedding for a different protein from scratch, then you will need to run the PLM, extract token embeddings and the attention maps. Then you'll need to run Pool PaRTI on the attention maps to extract token weights to perform a weighted average on the token embeddings. 
+
+The step-by-step guidance is provided below:
+
+### Human Protein on UniProt
+
+
+
+### Running from scratch
+
+
 To activate the conda, run this command:
 
 ```activation
@@ -38,7 +53,7 @@ Once the conda environment is activated, the following steps need to be taken to
 
 Below, we provide the code to run to achieve each of the steps
 
-### 1. Fasta file generation
+#### 1. Fasta file generation
 
 Go to the creating_fasta_files/ directory. Create a .txt (e.g., accessions.txt) file that has a list of uniprot accessions for the proteins you wish to create embeddings for, one accession per line. See an example of this in creating_fasta_files/test_accessions.txt
 
@@ -49,7 +64,7 @@ python fetch_uniprot_sequences_individual.py --accessions accessions.txt --outpu
 
 This will create individual FASTA files in the creating_fasta_files/sequences directory, each named after the corresponding UniProt accession number.
 
-### 2. ESM-2 or protBERT token embedding and attention map generation
+#### 2. ESM-2 or protBERT token embedding and attention map generation
 To generate token embeddings and attention maps using either the ESM-2 or ProtBERT model, use the provided scripts in the token_embedding_generator/ directory.
 
 First, navigate to the directory: 
@@ -57,7 +72,7 @@ First, navigate to the directory:
 cd token_embedding_generator/
 ```
 
-#### using ESM-2 model
+##### using ESM-2 model
 
 To generate embeddings using the ESM-2 model, run:
 ```
@@ -70,7 +85,7 @@ To generate embeddings using the ProtBERT model, run:
 python process_fasta_files.py --model protbert --input_dir ../creating_fasta_files/sequences --output_dir ./protbert_embeddings
 ```
 
-### 3. Sequence embedding generation with Pool PaRTI
+#### 3. Sequence embedding generation with Pool PaRTI
 To generate sequence embeddings using Pool PaRTI, apply the pooling method to the token embeddings and attention maps generated in the previous step.
 
 Navigate to the pooling_generator/ directory:
