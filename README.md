@@ -39,6 +39,7 @@ However, if you want to generate a sequence embedding for a different protein fr
 The step-by-step guidance is provided below:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### Human Protein on UniProt
 
 
@@ -51,6 +52,13 @@ The step-by-step guidance is provided below:
 
 ### Option 2: Running from scratch
 >>>>>>> d72a14f0e0df79cfa50f1f487b3354b23ca0ae06
+=======
+### Human Protein on UniProt
+
+
+
+### Running from scratch
+>>>>>>> origin/main
 
 
 To activate the conda, run this command:
