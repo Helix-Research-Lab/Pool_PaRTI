@@ -8,8 +8,8 @@ This repository is the official implementation of [Pool PaRTI: A PageRank-based 
 
 
 
-## Shortcut to generating Pool PaRTI embeddings for the human proteome reference sequences.
-Please see the precomputed token importance weights for all human proteome reference sequences. You can use these weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to perform a weighted sum of your amino acid token embeddings to get a sequence embeddings.
+## Access to Pool PaRTI embeddings and token importance values for the human proteome reference sequences.
+Please see the precomputed Pool PaRTI embeddings token importance weights for all human proteome reference sequences. You can use the embeddings directly in your applications and use the residue weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to assess the hierarchical importance of residues of interest within the context of the whole protein.
 https://zenodo.org/records/14080821 
 
 All proteins are indexed by their UniProt accession codes.
@@ -33,11 +33,11 @@ However, if you want to generate a sequence embedding for a different protein fr
 
 The step-by-step guidance is provided below:
 
-### Option 1: Human Protein on UniProt
+### Human Protein on UniProt
 
 
 
-### Option 2: Running from scratch
+### Running from scratch
 
 
 To activate the conda, run this command:
