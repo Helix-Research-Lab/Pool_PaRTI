@@ -5,6 +5,11 @@
 This repository is the official implementation of [Pool PaRTI: A PageRank-based Pooling Method for Robust Protein Sequence Representation in Deep Learning]. 
 
 ![graphical_summary_of_Pool_PaRTI](https://github.com/user-attachments/assets/e237aafe-d0ed-42b5-ba40-abc04409c030)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> d72a14f0e0df79cfa50f1f487b3354b23ca0ae06
 
 
 
@@ -33,11 +38,19 @@ However, if you want to generate a sequence embedding for a different protein fr
 
 The step-by-step guidance is provided below:
 
+<<<<<<< HEAD
 ### Human Protein on UniProt
 
 
 
 ### Running from scratch
+=======
+### Option 1: Human Protein on UniProt
+
+
+
+### Option 2: Running from scratch
+>>>>>>> d72a14f0e0df79cfa50f1f487b3354b23ca0ae06
 
 
 To activate the conda, run this command:
