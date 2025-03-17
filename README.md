@@ -9,7 +9,7 @@ This repository is the official implementation of [Pool PaRTI: A PageRank-based 
 
 ## Access to Pool PaRTI embeddings and token importance values for the human proteome reference sequences.
 Please see the precomputed Pool PaRTI embeddings and token importance weights for all human proteome reference sequences. You can use the embeddings directly in your applications and use the residue weights (stored as numpy arrays of lengths equal to the corresponding amino acid sequence lengths) to assess the hierarchical importance of residues of interest within the context of the whole protein.
-https://zenodo.org/records/14080821 
+https://zenodo.org/records/15036725 
 
 All proteins are indexed by their UniProt accession codes.
 
