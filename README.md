@@ -33,7 +33,7 @@ However, if you want to generate a sequence embedding for a different protein fr
 The step-by-step guidance is provided below:
 
 ### Human Protein on UniProt
-Get them from the zip file in https://zenodo.org/records/14080821 indexed by the UniProt accession.
+Get them from the zip file in https://zenodo.org/records/15036725 indexed by the UniProt accession.
 
 
 ### Running from scratch
